@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Container, NavBar } from "../../Components";
+import Profile from "../../Components/Profile";
 
 const SearchUsers = () => {
   return (
     <div >
       <NavBar />
       <Container >
-        tesate
+        <Profile />
       </Container>
-      <h1>SearchUsers</h1>
     </div>
   );
 }

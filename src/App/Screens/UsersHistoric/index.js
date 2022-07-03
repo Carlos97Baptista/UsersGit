@@ -1,9 +1,12 @@
 import * as React from "react";
-
+import { Container, NavBar,List } from "../../Components";
 const UsersHistoric = () => {
   return (
-    <div className="App">
-      <h1>SearchUsers</h1>
+    <div >
+      <NavBar />
+      <Container >
+        <List />
+      </Container>
     </div>
   );
 }

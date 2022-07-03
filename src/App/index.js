@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Route, Routes } from "react-router-dom";
-import { SearchUsers, UsersHistoric } from "./Screens";
+import { Routes, Route, Link } from "react-router-dom";
+import {SearchUsers, UsersHistoric} from "./Screens";
 
 const App = () => {
   return (

@@ -1,11 +1,34 @@
 import * as React from "react";
-import styled from "styled-components";
 import { FaSearch } from 'react-icons/fa';
+import { useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { useUser } from "../../Providers/users";
+import { GetUsers } from "../../Services/usersService";
+
 const SearchInput = () => {
+  const path = useLocation()
+    const {search, setSearch,setUsers, setLoading, changeHistoric} = useUser()
+    const navigate = useNavigate();
+    
+    const handleClick = async () => {
+      setLoading(true)
+      var value = await GetUsers(search)
+      console.log(value)
+        if(path.pathname === "/historic"){
+          setUsers(value);
+          changeHistoric({data: value, date: new Date });
+          setLoading(false);
+          navigate('/');
+        }
+
+        setUsers(value);
+        changeHistoric({data: value, date: new Date });
+        setLoading(false);
+    }
   return (
     <InputBox>
-    <Input/>
-    <InputBtn><FaSearch/></InputBtn>
+    <Input value={search} onChange={(e)=> setSearch(e.target.value)}/>
+    <InputBtn onClick={() => handleClick()}><FaSearch/></InputBtn>
     </InputBox>
   );
 }
