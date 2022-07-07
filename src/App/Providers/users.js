@@ -13,10 +13,10 @@ export const UserProvider = (props) => {
        var oldArray = Array.isArray(JSON.parse(localStorage.getItem("historic"))) ? JSON.parse(localStorage.getItem("historic")) : [];
       if(oldArray === "") {
         oldArray = [];
-        localStorage.setItem("historic", oldArray)
+        localStorage.setItem("historic", oldArray);
       }
 
-      let index = oldArray.findIndex(item => item.data.id == val.data.id);
+      let index = oldArray.findIndex(item => item.data.id === val.data.id);
       if(index >= 0){
         oldArray.splice(index, 1);
       }
@@ -34,7 +34,7 @@ export const UserProvider = (props) => {
             }
             return 0;
           })
-          localStorage.setItem("historic",JSON.stringify(oldArray))
+          localStorage.setItem("historic",JSON.stringify(oldArray));
     }
   return (
     <UserContext.Provider value={{ users, setUsers, search, setSearch, changeHistoric, loading,setLoading }}>

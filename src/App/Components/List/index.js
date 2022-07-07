@@ -1,9 +1,9 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useUser } from "../../Providers/users";
-import { useNavigate } from "react-router-dom";
-
 import { GetUsers } from "../../Services/usersService";
+
 
 const List = (props) => {
     const {search, setSearch,setUsers, setLoading, changeHistoric} = useUser()
@@ -12,11 +12,10 @@ const List = (props) => {
 
   React.useState(()=>{
     var value = JSON.parse(localStorage.getItem("historic"));
-    console.log(value)
     setHistoric(value)
   },[])
     const handleClick = async (val)=> {
-      var value = await GetUsers(val)
+      var value = await GetUsers(val);
       setUsers(value);
       changeHistoric({data: value, date: new Date });
       setLoading(false);
@@ -36,7 +35,7 @@ const List = (props) => {
     <Form>
           <Divider/>
       {Array.isArray(historic) ? (
-        <>{historic.map(val => <>  <Row key={"H-"+val.data.id} onClick={() => handleClick(val.data.name ? val.data.name : val.data.login)}>
+        <>{historic.map(val => <>  <Row key={"H-"+val.data.id} onClick={() => handleClick(val.data.login)}>
           <div style={{display: "flex", flexDirection: "row"}}>
          <Thumbnail>
                 <Image src={val.data.avatar_url} />

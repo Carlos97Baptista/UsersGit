@@ -1,13 +1,10 @@
 import * as React from "react";
-import { Container, NavBar,List } from "../../Components";
+import { Container, List } from "../../Components";
 const UsersHistoric = () => {
   return (
-    <div >
-      <NavBar />
       <Container >
         <List />
       </Container>
-    </div>
   );
 }
 

@@ -4,6 +4,7 @@ import { useUser } from "../../Providers/users";
 
 const Profile = (props) => {
     const {users} = useUser()
+    console.log(users)
   return (
     <Form>
       {users ? (

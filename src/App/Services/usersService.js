@@ -6,10 +6,6 @@ const api = axios.create({
 
  export const GetUsers = async (name) => {
 
-if(name ==="" || name === null){
-  alert("Preencha o nome do usuário");
-  return
-}
 
 try
 {

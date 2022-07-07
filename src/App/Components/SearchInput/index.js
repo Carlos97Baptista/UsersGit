@@ -6,14 +6,19 @@ import { useUser } from "../../Providers/users";
 import { GetUsers } from "../../Services/usersService";
 
 const SearchInput = () => {
-  const path = useLocation()
-    const {search, setSearch,setUsers, setLoading, changeHistoric} = useUser()
+  const path = useLocation();
+    const [search, setSearch] = React.useState("");
+    const {setUsers, setLoading, changeHistoric} = useUser();
     const navigate = useNavigate();
     
     const handleClick = async () => {
-      setLoading(true)
-      var value = await GetUsers(search)
-      console.log(value)
+      
+if(search === ""){
+  alert("Preencha o nome do usuário");
+  return
+}
+      setLoading(true);
+      var value = await GetUsers(search);
         if(path.pathname === "/historic"){
           setUsers(value);
           changeHistoric({data: value, date: new Date });
@@ -27,8 +32,8 @@ const SearchInput = () => {
     }
   return (
     <InputBox>
-    <Input value={search} onChange={(e)=> setSearch(e.target.value)}/>
-    <InputBtn onClick={() => handleClick()}><FaSearch/></InputBtn>
+    <Input placeholder="Pesquisar" data-testid="searchInput" value={search} onChange={(e)=> setSearch(e.target.value)}/>
+    <InputBtn  data-testid="searchBtn" onClick={() => handleClick()}><FaSearch/></InputBtn>
     </InputBox>
   );
 }
